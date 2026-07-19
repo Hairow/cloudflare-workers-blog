@@ -508,9 +508,9 @@ async function GetHtmlAdmin(request, path, env) {
         //清理缓存
         let cacheRST = await purgeCache();
         if (cacheRST)
-            return `{"msg":"published ,purge Cache true","rst":true}`;
+            return `{"msg":"发布成功，缓存已刷新","rst":true}`;
         else
-            return `{"msg":"published ,buuuuuuuuuuuut purge Cache false !!!!!!","rst":true}`;
+            return `{"msg":"发布成功（缓存约60秒后自动刷新）","rst":true}`;
 
     }
     //获取文章列表
