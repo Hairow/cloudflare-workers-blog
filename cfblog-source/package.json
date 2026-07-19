@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "name": "cfblog",
+  "version": "1.0.0",
+  "description": "A blog run on cloudflare workers",
+  "main": "index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "format": "prettier --write '**/*.{js,css,json,md}'"
+  },
+  "author": "root",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^1.18.2",
+    "wrangler": "^4.0.0"
+  },
+  "dependencies": {
+    "@cloudflare/kv-asset-handler": "0.0.12",
+    "@jeanycyang/google-api-access-token": "^1.1.0",
+    "express-sitemap-xml": "^3.0.0",
+    "mustache": "^4.1.0",
+    "querystring": "^0.2.0"
+  }
+}
