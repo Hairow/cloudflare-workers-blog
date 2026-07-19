@@ -96,14 +96,12 @@ async function handleRequest(request, env, ctx) {
     let pageSize = url.searchParams.get('pageSize');
 
     if (theme) {
-        OPT.themeURL = "https://raw.githubusercontent.com/gdtool/cloudflare-workers-blog/master/themes/" + theme + '/'
+        OPT.themeURL = OPT.themeURL.replace(/themes\/[^/]+/, 'themes/' + theme)
     }
     if (pageSize) {
         OPT.pageSize = parseInt(pageSize)
     }
-    if (OPT.themeURL == "https://raw.githubusercontent.com/gdtool/cloudflare-workers-blog/master/themes/default/") {
-        OPT.themeURL = "https://raw.githubusercontent.com/gdtool/cloudflare-workers-blog/master/themes/default2.0/"
-    }
+
     console.log("theme pageSize", OPT.pageSize, OPT.themeURL);
     // 处理/robots.txt
     if (url.pathname == "/robots.txt") {

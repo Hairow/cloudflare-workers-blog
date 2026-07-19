@@ -21,5 +21,20 @@
     "READ_MORE_LENGTH": "150",
     "CACHE_TIME": "60",
     "THEME_URL": "https://raw.githubusercontent.com/Hairow/cloudflare-workers-blog/master/themes/JustNews/"
+  },
+  "observability": {
+    "enabled": false,
+    "head_sampling_rate": 1,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "persist": true,
+      "invocation_logs": true
+    },
+    "traces": {
+      "enabled": false,
+      "persist": true,
+      "head_sampling_rate": 1
+    }
   }
 }
