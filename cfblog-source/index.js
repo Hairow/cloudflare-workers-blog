@@ -112,6 +112,34 @@ async function handleRequest(request, env, ctx) {
             status: 200
         })
     }
+    // 阅读计数 API
+    if (url.pathname == "/api/pageview") {
+        let articlePath = url.searchParams.get('path');
+        if (!articlePath) {
+            return new Response(JSON.stringify({ count: 0 }), {
+                headers: { 'content-type': 'application/json;charset=UTF-8' },
+            });
+        }
+        let count = parseInt(await env.CFBLOG.get('pageview_' + articlePath)) || 0;
+        return new Response(JSON.stringify({ count: count }), {
+            headers: { 'content-type': 'application/json;charset=UTF-8' },
+        });
+    }
+    // 增加阅读计数（POST 方式）
+    if (url.pathname == "/api/pageview/increment") {
+        let articlePath = url.searchParams.get('path');
+        if (!articlePath) {
+            return new Response(JSON.stringify({ count: 0 }), {
+                headers: { 'content-type': 'application/json;charset=UTF-8' },
+            });
+        }
+        let count = parseInt(await env.CFBLOG.get('pageview_' + articlePath)) || 0;
+        count++;
+        await env.CFBLOG.put('pageview_' + articlePath, count.toString());
+        return new Response(JSON.stringify({ count: count }), {
+            headers: { 'content-type': 'application/json;charset=UTF-8' },
+        });
+    }
     //favicon.ico
     if (url.pathname == "/favicon.ico") {
         return new Response("404", {
