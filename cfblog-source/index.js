@@ -114,28 +114,28 @@ async function handleRequest(request, env, ctx) {
     }
     // 阅读计数 API
     if (url.pathname == "/api/pageview") {
-        let articlePath = url.searchParams.get('path');
-        if (!articlePath) {
+        let articleId = url.searchParams.get('path');
+        if (!articleId) {
             return new Response(JSON.stringify({ count: 0 }), {
                 headers: { 'content-type': 'application/json;charset=UTF-8' },
             });
         }
-        let count = parseInt(await env.CFBLOG.get('pageview_' + articlePath)) || 0;
+        let count = parseInt(await env.CFBLOG.get('pageview_' + articleId)) || 0;
         return new Response(JSON.stringify({ count: count }), {
             headers: { 'content-type': 'application/json;charset=UTF-8' },
         });
     }
-    // 增加阅读计数（POST 方式）
+    // 增加阅读计数
     if (url.pathname == "/api/pageview/increment") {
-        let articlePath = url.searchParams.get('path');
-        if (!articlePath) {
+        let articleId = url.searchParams.get('path');
+        if (!articleId) {
             return new Response(JSON.stringify({ count: 0 }), {
                 headers: { 'content-type': 'application/json;charset=UTF-8' },
             });
         }
-        let count = parseInt(await env.CFBLOG.get('pageview_' + articlePath)) || 0;
+        let count = parseInt(await env.CFBLOG.get('pageview_' + articleId)) || 0;
         count++;
-        await env.CFBLOG.put('pageview_' + articlePath, count.toString());
+        await env.CFBLOG.put('pageview_' + articleId, count.toString());
         return new Response(JSON.stringify({ count: count }), {
             headers: { 'content-type': 'application/json;charset=UTF-8' },
         });
