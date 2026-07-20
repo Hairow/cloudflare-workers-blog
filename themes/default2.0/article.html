@@ -127,9 +127,9 @@
 												<span class="meta-sep">|</span>
 												<span class="date updated">{{ &articleSingle.createDate10 }}</span></div>
 											<div class="adt-comment">
-												<span id="{{ &articleSingle.url }}" class="leancloud_visitors">
+												<span class="leancloud_visitors">
 													<em class="post-meta-item-text">{{ &OPT.otherCodeA }}</em>
-													<i class="leancloud-visitors-count"></i>
+													<span class="pageview-count" data-path="{{ &articleSingle.url }}">-</span>
 												</span>
 											</div>
 										</div>
@@ -230,6 +230,19 @@
 				<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/gdtool/zhaopp/cfblog/wp-embed.min.js?ver=5.6" id="wp-embed-js"></script>
 				<script>hljs.initHighlightingOnLoad(); //代码高亮
 					</script>
+<script>
+// 阅读计数
+(function(){
+  document.querySelectorAll('.pageview-count').forEach(function(el){
+    var path = el.getAttribute('data-path');
+    if(!path) return;
+    fetch('/api/pageview/increment?path=' + encodeURIComponent(path))
+      .then(function(r){ return r.json(); })
+      .then(function(d){ el.textContent = d.count; })
+      .catch(function(){ el.textContent = '-'; });
+  });
+})();
+</script>
 				{{ &OPT.codeBeforBody }}
 			</body>
 			

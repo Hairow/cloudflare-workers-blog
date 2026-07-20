@@ -131,6 +131,19 @@ img.emoji {
 	<script>
 		hljs.initHighlightingOnLoad();//代码高亮
 	</script>
+<script>
+// 阅读计数
+(function(){
+  document.querySelectorAll('.pageview-count').forEach(function(el){
+    var path = el.getAttribute('data-path');
+    if(!path) return;
+    fetch('/api/pageview/increment?path=' + encodeURIComponent(path))
+      .then(function(r){ return r.json(); })
+      .then(function(d){ el.textContent = d.count; })
+      .catch(function(){ el.textContent = '-'; });
+  });
+})();
+</script>
 <!--{opt.codeBeforBody}-->
 	</body>
 </html>
