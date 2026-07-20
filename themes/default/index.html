@@ -137,7 +137,7 @@ img.emoji {
   document.querySelectorAll('.pageview-count').forEach(function(el){
     var path = el.getAttribute('data-path');
     if(!path) return;
-    fetch('/api/pageview/increment?path=' + encodeURIComponent(path))
+    fetch('/api/pageview?path=' + encodeURIComponent(path))
       .then(function(r){ return r.json(); })
       .then(function(d){ el.textContent = d.count; })
       .catch(function(){ el.textContent = '-'; });
