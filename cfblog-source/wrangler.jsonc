@@ -20,7 +20,7 @@
     "RECENTLY_SIZE": "3",
     "READ_MORE_LENGTH": "150",
     "CACHE_TIME": "60",
-    "THEME_URL": "https://raw.githubusercontent.com/Hairow/cloudflare-workers-blog/master/themes/JustNews/"
+    "THEME_URL": "https://raw.githubusercontent.com/Hairow/cloudflare-workers-blog/master/themes/JustNews2/"
   },
   "observability": {
     "enabled": false,
