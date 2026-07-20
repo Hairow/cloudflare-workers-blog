@@ -1404,7 +1404,7 @@ function doBasicAuth(request) {
     }
 
     const [user, pass] = parseBasicAuth(auth);
-    console.log("-----parseBasicAuth----- ", user, pass);
+
     return user === OPT.user && pass === OPT.password;
 }
 
